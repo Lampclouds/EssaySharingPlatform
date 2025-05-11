@@ -1,29 +1,42 @@
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="court_selection_write.html">Write</a>
+    <a href="court_selection_read.html">Read Essays</a>
+</div>
 <?php
-// submitEssay.php
+// Assuming you have a function to save essays
+function saveEssay($court, $title, $content) {
+    // Connect to your database
+    $conn = new mysqli("localhost", "username", "password", "database_name");
 
-// Start the session to store court information
-session_start();
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-// Check if the essay is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the essay and court from the form submission
-    $essay = $_POST['essay'];
-    $court = $_SESSION['court'] ?? 'Unknown Court'; // Get court from session or default
+    // Prepare and bind
+    $stmt = $conn->prepare("INSERT INTO essays (court, title, content) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $court, $title, $content);
 
-    // Here you would typically save the essay to a database
-    // For demonstration, we'll just save it to a text file
-    $filename = 'essays.txt'; // File to store essays
-    $entry = "Court: $court\nEssay: $essay\n\n"; // Format the entry
+    // Execute the statement
+    if ($stmt->execute()) {
+        // Redirect to the specific reading page for that court
+        header("Location: view_essays.php?court=" . urlencode($court));
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
 
-    // Append the essay to the file
-    file_put_contents($filename, $entry, FILE_APPEND);
-
-    // Redirect to the view essays page
-    header("Location: view_essays.php?court=" . urlencode($court));
-    exit();
-} else {
-    // If not a POST request, redirect back to the essay writer
-    header("Location: essay_writer.html");
-    exit();
+    // Close the connection
+    $stmt->close();
+    $conn->close();
 }
+
+// Get the form data
+$court = $_GET['court'];
+$title = $_POST['title']; // Assuming you have a title field
+$content = $_POST['essay'];
+
+// Save the essay
+saveEssay($court, $title, $content);
 ?>

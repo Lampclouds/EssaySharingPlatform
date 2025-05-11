@@ -1,3 +1,8 @@
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="court_selection_write.html">Write</a>
+    <a href="court_selection_read.html">Read Essays</a>
+</div>
 <?php
 // Enable error reporting
 error_reporting(E_ALL);

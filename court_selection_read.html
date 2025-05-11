@@ -7,64 +7,81 @@
     <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Arial', sans-serif; /* Change font if needed */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center text */
+        }
+        .navbar {
+            width: 100%; /* Full width */
+            background-color: #f8f9fa; /* Light background color */
+            padding: 10px; /* Padding around the navbar */
+            position: fixed; /* Fixed position at the top */
+            top: 0; /* Align to the top */
+            left: 0; /* Align to the left */
+            z-index: 1000; /* Ensure it stays on top */
+        }
+        .navbar a {
+            margin: 0 15px; /* Spacing between links */
+            text-decoration: none; /* Remove underline */
+            color: black; /* Plain text color */
+            font-weight: bold; /* Bold text */
+            padding: 10px; /* Padding for clickable area */
+        }
+        .navbar a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        .container {
+            margin-top: 60px; /* Space for the fixed navbar */
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .button {
-            margin: 10px;
-            padding: 15px 30px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: darkred;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: calc(100vh - 60px); /* Full height minus navbar */
         }
         .dropdown {
-            margin: 10px; /* Space for dropdown */
+            margin: 20px 0; /* Margin for dropdown */
         }
     </style>
 </head>
 <body>
-    <h1>Select Court to Read Essays</h1>
-    <div class="dropdown">
-        <label for="court-select">Select Court:</label>
-        <select id="court-select" onchange="courtSelected()">
-            <option value="">--Select a Court--</option>
-            <option value="Supreme">Supreme Court</option>
-            <option value="1st">1st Circuit Court of Appeals</option>
-            <option value="2nd">2nd Circuit Court of Appeals</option>
-            <option value="3rd">3rd Circuit Court of Appeals</option>
-            <option value="4th">4th Circuit Court of Appeals</option>
-            <option value="5th">5th Circuit Court of Appeals</option>
-            <option value="6th">6th Circuit Court of Appeals</option>
-            <option value="7th">7th Circuit Court of Appeals</option>
-            <option value="8th">8th Circuit Court of Appeals</option>
-            <option value="9th">9th Circuit Court of Appeals</option>
-            <option value="10th">10th Circuit Court of Appeals</option>
-            <option value="11th">11th Circuit Court of Appeals</option>
-            <option value="DC">D.C. Circuit Court of Appeals</option>
-            <option value="Federal">Federal Circuit Court of Appeals</option>
-        </select>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="court_selection_write.html">Write</a>
+        <a href="court_selection_read.html">Read Essays</a>
     </div>
-    <a href="index.html" class="button">Back to Home</a> <!-- Back button -->
-    
+    <div class="container">
+        <h1>Select Court to Read Essays</h1>
+        <div class="dropdown">
+            <label for="court-select">Select Court:</label>
+            <select id="court-select" name="court" required>
+                <option value="">--Select a Court--</option>
+                <option value="Supreme">Supreme Court</option>
+                <option value="1st">1st Circuit Court of Appeals</option>
+                <option value="2nd">2nd Circuit Court of Appeals</option>
+                <option value="3rd">3rd Circuit Court of Appeals</option>
+                <option value="4th">4th Circuit Court of Appeals</option>
+                <option value="5th">5th Circuit Court of Appeals</option>
+                <option value="6th">6th Circuit Court of Appeals</option>
+                <option value="7th">7th Circuit Court of Appeals</option>
+                <option value="8th">8th Circuit Court of Appeals</option>
+                <option value="9th">9th Circuit Court of Appeals</option>
+                <option value="10th">10th Circuit Court of Appeals</option>
+                <option value="11th">11th Circuit Court of Appeals</option>
+                <option value="DC">D.C. Circuit Court of Appeals</option>
+                <option value="Federal">Federal Circuit Court of Appeals</option>
+            </select>
+        </div>
+        <button onclick="viewEssays()">View Essays</button>
+    </div>
+
     <script>
-        function courtSelected() {
-            const select = document.getElementById('court-select');
-            const court = select.value;
-            if (court) {
-                window.location.href = `view_essays.php?court=${court}`;
+        function viewEssays() {
+            const courtSelect = document.getElementById('court-select');
+            const selectedCourt = courtSelect.value;
+            if (selectedCourt) {
+                window.location.href = `view_essays.php?court=${encodeURIComponent(selectedCourt)}`;
+            } else {
+                alert("Please select a court.");
             }
         }
     </script>
