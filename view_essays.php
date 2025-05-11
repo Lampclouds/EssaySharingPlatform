@@ -1,5 +1,7 @@
 <?php
-// view_essays.php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Start the session to retrieve court information
 session_start();
@@ -36,6 +38,11 @@ $filteredEssays = array_filter($essays, function($entry) use ($court) {
             width: 80%;
             max-width: 600px;
         }
+        .essay-link {
+            color: blue; /* Essay link color */
+            text-decoration: underline; /* Underline for links */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
     </style>
 </head>
 <body>
@@ -46,13 +53,17 @@ $filteredEssays = array_filter($essays, function($entry) use ($court) {
                 <p>No essays submitted for this court yet.</p>
             <?php else: ?>
                 <ul>
-                    <?php foreach ($filteredEssays as $essay): ?>
-                        <li><?php echo nl2br(htmlspecialchars($essay)); ?></li>
+                    <?php foreach ($filteredEssays as $index => $essay): ?>
+                        <li>
+                            <a href="essay_detail.php?court=<?php echo urlencode($court); ?>&index=<?php echo $index; ?>" class="essay-link">
+                                <?php echo nl2br(htmlspecialchars($essay)); ?>
+                            </a>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
         </div>
-        <a href="essay_writer.html?court=<?php echo urlencode($court); ?>">Back to Essay Writer</a>
+        <a href="index.html" class="button">Back to Home</a> <!-- Updated back button -->
     </div>
 </body>
 </html>
