@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essay Sharing Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Set font to Times New Roman */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center text */
+        }
+        .container {
+            width: 80%; /* Set a max width for the content */
+            max-width: 600px; /* Optional: limit the max width */
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Essay Sharing Platform</h1>
+            <div class="dropdown">
+                <button class="dropbtn">Select Court</button>
+                <div class="dropdown-content">
+                    <a href="essay_writer.html?court=Supreme">Supreme Court of the United States</a>
+                    <a href="essay_writer.html?court=1st">1st Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=2nd">2nd Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=3rd">3rd Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=4th">4th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=5th">5th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=6th">6th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=7th">7th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=8th">8th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=9th">9th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=10th">10th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=11th">11th Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=DC">D.C. Circuit Court of Appeals</a>
+                    <a href="essay_writer.html?court=Federal">Federal Circuit Court of Appeals</a>
+                    <!-- Add District Courts -->
+                    <a href="essay_writer.html?court=District1">District Court 1</a>
+                    <a href="essay_writer.html?court=District2">District Court 2</a>
+                    <a href="essay_writer.html?court=District3">District Court 3</a>
+                    <!-- ... Add all 94 district courts here ... -->
+                    <a href="essay_writer.html?court=District94">District Court 94</a>
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>

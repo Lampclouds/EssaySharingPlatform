@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essay Writer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Set font to Times New Roman */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center text */
+        }
+        .container {
+            width: 80%; /* Set a max width for the content */
+            max-width: 600px; /* Optional: limit the max width */
+        }
+        .star-border {
+            border: 2px solid transparent; /* Default border */
+            padding: 5px; /* Padding around the button */
+            transition: border-color 0.3s; /* Smooth transition for border color */
+        }
+        .star-border:hover {
+            border-color: gold; /* Change border color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Essay Writer</h1>
+        <div id="court-info"></div>
+        <form action="submitEssay.php" method="post">
+            <textarea name="essay" id="essay" cols="30" rows="10" placeholder="Write your essay here..."></textarea>
+            <div class="star-border">
+                <button type="submit">Post Essay</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Get the selected court from the URL
+        const selectedCourt = getQueryParameter('court');
+        const courtInfoDiv = document.getElementById('court-info');
+
+        // Display the selected court
+        if (selectedCourt) {
+            courtInfoDiv.innerHTML = `<h2>Selected Court: ${selectedCourt}</h2>`;
+        } else {
+            courtInfoDiv.innerHTML = `<h2>No court selected.</h2>`;
+        }
+    </script>
+</body>
+</html>
