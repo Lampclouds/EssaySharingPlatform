@@ -30,25 +30,43 @@
         .button:hover {
             background-color: darkred;
         }
+        .dropdown {
+            margin: 10px; /* Space for dropdown */
+        }
     </style>
 </head>
 <body>
     <h1>Select Court to Read Essays</h1>
-    <div>
-        <a href="view_essays.php?court=Supreme" class="button">Supreme Court</a>
-        <a href="view_essays.php?court=1st" class="button">1st Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=2nd" class="button">2nd Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=3rd" class="button">3rd Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=4th" class="button">4th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=5th" class="button">5th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=6th" class="button">6th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=7th" class="button">7th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=8th" class="button">8th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=9th" class="button">9th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=10th" class="button">10th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=11th" class="button">11th Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=DC" class="button">D.C. Circuit Court of Appeals</a>
-        <a href="view_essays.php?court=Federal" class="button">Federal Circuit Court of Appeals</a>
+    <div class="dropdown">
+        <label for="court-select">Select Court:</label>
+        <select id="court-select" onchange="courtSelected()">
+            <option value="">--Select a Court--</option>
+            <option value="Supreme">Supreme Court</option>
+            <option value="1st">1st Circuit Court of Appeals</option>
+            <option value="2nd">2nd Circuit Court of Appeals</option>
+            <option value="3rd">3rd Circuit Court of Appeals</option>
+            <option value="4th">4th Circuit Court of Appeals</option>
+            <option value="5th">5th Circuit Court of Appeals</option>
+            <option value="6th">6th Circuit Court of Appeals</option>
+            <option value="7th">7th Circuit Court of Appeals</option>
+            <option value="8th">8th Circuit Court of Appeals</option>
+            <option value="9th">9th Circuit Court of Appeals</option>
+            <option value="10th">10th Circuit Court of Appeals</option>
+            <option value="11th">11th Circuit Court of Appeals</option>
+            <option value="DC">D.C. Circuit Court of Appeals</option>
+            <option value="Federal">Federal Circuit Court of Appeals</option>
+        </select>
     </div>
+    <a href="index.html" class="button">Back to Home</a> <!-- Back button -->
+    
+    <script>
+        function courtSelected() {
+            const select = document.getElementById('court-select');
+            const court = select.value;
+            if (court) {
+                window.location.href = `view_essays.php?court=${court}`;
+            }
+        }
+    </script>
 </body>
 </html>
